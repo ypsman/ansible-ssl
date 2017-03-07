@@ -21,16 +21,18 @@ Example Playbook
     - hosts: all
       roles:
         - role: ypsman.ssl
-          ssl_cert: "--- SSL CERT---
+          ssl_cert: |
+                    --- SSL CERT---
                     1234567890abcdef
                     1234567890abcdef
                     1234567890abcdef
                     1234567890abcdef
-                    --- END CERT ---"
-          ssl_key:  "--- SSL KEY ---
+                    --- END CERT ---
+          ssl_key:  |
+                    ---- SSL KEY ---
                     1234567890abcdef
                     1234567890abcdef
                     1234567890abcdef
                     1234567890abcdef
-                    --- END Key ---"
+                    ---- END Key ---
           ssl_cert_path:    '/etc/ssl/local'  # Optional for other Path
