@@ -1,0 +1,9 @@
+---
+# defaults file for ssl
+# handlers file for ssl
+ssl_cert_path:    '/etc/ssl/local'
+ssl_crt_name:     'server.crt'
+ssl_key_name:     'server.key'
+ssl_user:         'root'
+ssl_group:        'root'
+ssl_umask:        '0600'
