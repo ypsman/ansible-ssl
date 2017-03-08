@@ -4,7 +4,7 @@
     path: "{{ ssl_cert_path }}"
     state: directory
     owner: "{{ ssl_user }}"
-    group: "{{ ssl_user }}"
+    group: "{{ ssl_group }}"
     mode: "{{ ssl_umask }}"
 
 - copy:
@@ -12,7 +12,7 @@
             {{ ssl_cert }}
     dest: "{{ ssl_cert_path }}/{{ ssl_crt_name }}"
     owner: "{{ ssl_user }}"
-    group: "{{ ssl_user }}"
+    group: "{{ ssl_group }}"
     mode: "{{ ssl_umask }}"
 
 - copy:
@@ -20,5 +20,5 @@
             {{ ssl_key }}
     dest: "{{ ssl_cert_path }}/{{ ssl_key_name }}"
     owner: "{{ ssl_user }}"
-    group: "{{ ssl_user }}"
+    group: "{{ ssl_group }}"
     mode: "{{ ssl_umask }}"
