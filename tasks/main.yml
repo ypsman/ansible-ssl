@@ -1,24 +1,37 @@
 ---
 # tasks file for ssl
-- file:
+- name: Creating folder under {{ ssl_cert_path }}
+  file:
     path: "{{ ssl_cert_path }}"
     state: directory
     owner: "{{ ssl_user }}"
     group: "{{ ssl_group }}"
     mode: "{{ ssl_umask }}"
+  when:
+    - ssl_cert is defined
+    - ssl_key is defined
 
-- copy:
+- name: copy Cert File
+  copy:
     content: |
             {{ ssl_cert }}
     dest: "{{ ssl_cert_path }}/{{ ssl_crt_name }}"
     owner: "{{ ssl_user }}"
     group: "{{ ssl_group }}"
     mode: "{{ ssl_umask }}"
+  when:
+    - ssl_cert is defined
+    - ssl_key is defined
 
-- copy:
+- name: copy Key File
+  copy:
     content: |
             {{ ssl_key }}
     dest: "{{ ssl_cert_path }}/{{ ssl_key_name }}"
     owner: "{{ ssl_user }}"
     group: "{{ ssl_group }}"
     mode: "{{ ssl_umask }}"
+  when:
+    - ssl_cert is defined
+    - ssl_key is defined
+
