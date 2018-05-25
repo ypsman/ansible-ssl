@@ -2,7 +2,7 @@ ansible ssl
 ===========
 [![Build Status](https://travis-ci.org/ypsman/ansible-ssl.svg?branch=master)](https://travis-ci.org/ypsman/ansible-ssl)
 
-Installs SSL Cert and Key on youre Server.
+Installs SSL Cert and Key on your Server.
 
 defaults:
 ---------
