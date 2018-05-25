@@ -1,37 +1,46 @@
 ---
 # tasks file for ssl
-- name: Creating folder under {{ ssl_cert_path }}
+- name: Ensure Key folder {{ ssl_key_path }}
   file:
-    path: "{{ ssl_cert_path }}"
+    path: "{{ ssl_key_path }}"
     state: directory
     owner: "{{ ssl_user }}"
     group: "{{ ssl_group }}"
-    mode: "{{ ssl_umask }}"
+    mode: "{{ ssl_key_umask }}"
   when:
     - ssl_cert is defined
     - ssl_key is defined
 
-- name: copy Cert File
+- name: copy SSLCertificateFile {{ ssl_cert }}
   copy:
-    content: |
-            {{ ssl_cert }}
+    src: "{{ ssl_cert }}"
     dest: "{{ ssl_cert_path }}/{{ ssl_crt_name }}"
     owner: "{{ ssl_user }}"
     group: "{{ ssl_group }}"
-    mode: "{{ ssl_umask }}"
+    mode: "{{ ssl_cert_umask }}"
   when:
     - ssl_cert is defined
     - ssl_key is defined
 
-- name: copy Key File
+- name: copy SSLCertificateKeyFile {{ ssl_key }}
   copy:
-    content: |
-            {{ ssl_key }}
-    dest: "{{ ssl_cert_path }}/{{ ssl_key_name }}"
+    src: "{{ ssl_key }}"
+    dest: "{{ ssl_key_path }}/{{ ssl_key_name }}"
     owner: "{{ ssl_user }}"
     group: "{{ ssl_group }}"
-    mode: "{{ ssl_umask }}"
+    mode: "{{ ssl_key_umask }}"
   when:
     - ssl_cert is defined
     - ssl_key is defined
 
+- name: copy SSLCertificateChainFile {{ ssl_ica }}
+  copy:
+    content: "{{ ssl_ica }}"
+    dest: "{{ ssl_cert_path }}/{{ ssl_ica_name }}"
+    owner: "{{ ssl_user }}"
+    group: "{{ ssl_group }}"
+    mode: "{{ ssl_cert_umask }}"
+  when:
+    - ssl_cert is defined
+    - ssl_key is defined
+    - ssl_ica is defined

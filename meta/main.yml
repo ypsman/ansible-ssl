@@ -2,14 +2,13 @@ galaxy_info:
   author: ypsman
   description: Installs SSL certificate and key
   license: license (GPLv2, CC-BY, etc)
-  min_ansible_version: 1.2
+  min_ansible_version: 2.2
   platforms:
-  - name: Debian
-    versions:
-    - stretch
-    - jessie
-    - wheezy
   - name: Ubuntu
+    versions: all
+  - name: Debian
+    versions: all
+  - name: EL
     versions: all
   galaxy_tags:
   - ssl
@@ -21,4 +20,6 @@ galaxy_info:
   - key
   - ubuntu
   - debian
+  - centos
+  - redhat
 dependencies: []

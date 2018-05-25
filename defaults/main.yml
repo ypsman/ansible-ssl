@@ -1,9 +1,11 @@
 ---
 # defaults file for ssl
-# handlers file for ssl
-ssl_cert_path:    '/etc/ssl/local'
+ssl_cert_path:    '/etc/ssl/certs'
+ssl_key_path:     '/etc/ssl/private'
 ssl_crt_name:     'server.crt'
 ssl_key_name:     'server.key'
+ssl_ica_name:     'server.ca'
 ssl_user:         'root'
 ssl_group:        'root'
-ssl_umask:        '0400'
+ssl_cert_umask:   '0644'
+ssl_key_umask:    '0640'

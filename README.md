@@ -2,16 +2,21 @@ ansible ssl
 ===========
 [![Build Status](https://travis-ci.org/ypsman/ansible-ssl.svg?branch=master)](https://travis-ci.org/ypsman/ansible-ssl)
 
-Installs SSL Cert and Key on your Server.
+Installs SSL Cert and Key on your Server.<br>
+Chainfile will only Copied if defined.
+
 
 defaults:
 ---------
-    ssl_cert_path:    '/etc/ssl/local'    # Path to install
-    ssl_crt_name:     'server.crt'        # name of the crt File
-    ssl_key_name:     'server.key'        # name of the Key File
-    ssl_user:         'root'              # Owner of Files
-    ssl_group:        'root'              # Group Owner
-    ssl_umask:        '0400'              # umask for Folder and Files
+    ssl_cert_path:    '/etc/ssl/certs'
+    ssl_key_path:     '/etc/ssl/private'
+    ssl_crt_name:     'server.crt'
+    ssl_key_name:     'server.key'
+    ssl_ica_name:     'server.ca'
+    ssl_user:         'root'
+    ssl_group:        'root'
+    ssl_cert_umask:   '0644'
+    ssl_key_umask:    '0640'
 
 You can override the Defaults in youre Playbook
 
@@ -21,18 +26,7 @@ Example Playbook
     - hosts: all
       roles:
         - role: ypsman.ssl
-          ssl_cert: |
-                    --- SSL CERT---
-                    1234567890abcdef
-                    1234567890abcdef
-                    1234567890abcdef
-                    1234567890abcdef
-                    --- END CERT ---
-          ssl_key:  |
-                    ---- SSL KEY ---
-                    1234567890abcdef
-                    1234567890abcdef
-                    1234567890abcdef
-                    1234567890abcdef
-                    ---- END Key ---
-          ssl_cert_path:    '/etc/ssl/local'  # Optional for other Path
+          ssl_cert: vars/certfile.crt
+          ssl_key:  vars/certfile.key
+          ssl_ica:  vars/chainfile.pem    # optional 
+          ssl_cert_path: '/etc/pki/certs' # optional
